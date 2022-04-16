@@ -10,7 +10,7 @@ BaseClass::BaseClass(string objectName, BaseClass* parentPtr) : objectName{ obje
 	}
 	else
 	{
-		setParent(ancestor);
+		setParent(ancestor); // Объект приеркпляется к корневому
 	}
 }
 
@@ -41,15 +41,15 @@ BaseClass* BaseClass::getObject(string objectName)
 
 void BaseClass::printTree(bool isPrintReadiness, unsigned tableLevel)
 {
-	string tabsLength;
-	tabsLength.append(4 * tableLevel,' ');
+	string tabsLength; // Строка с необходимыми табуляциями
+	tabsLength.append(4 * tableLevel,' '); // Количество табуляций зависит от уровня погружения в дерево
 	cout << '\n' << tabsLength << this->getName();
 
 	if (isPrintReadiness)
 	{
 		if (this->getReadiness())
 		{
-			cout << " is redy";
+			cout << " is ready";
 		}
 		else
 		{
@@ -65,12 +65,14 @@ void BaseClass::printTree(bool isPrintReadiness, unsigned tableLevel)
 
 	for (size_t i = 0; i < childrenList.size(); i++)
 	{
+		// Печать дерева для каждого производного объекта
 		childrenList.at(i)->printTree(isPrintReadiness, tableLevel + 1);
 	}
 }
 
 void BaseClass::setReadiness(int numericReadiness)
 {
+	// Если численное значение готовности не равно нулю
 	if (numericReadiness)
 	{
 		BaseClass* tempParentPtr = this->parentPtr;
@@ -78,11 +80,11 @@ void BaseClass::setReadiness(int numericReadiness)
 		{
 			if (!(tempParentPtr->getReadiness()))
 			{
-				return;
+				return; // Если хоть один из вышестоящих оюъектов не готов, то выход из функции
 			}
-			tempParentPtr = tempParentPtr->getParent();
+			tempParentPtr = tempParentPtr->getParent(); // Проход вверх по дереву
 		}
-		this->readiness = true;
+		this->readiness = true; // Если все родительские объекты готовы
 	}
 	return;
 }

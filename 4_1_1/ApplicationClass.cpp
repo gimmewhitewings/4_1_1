@@ -61,16 +61,16 @@ void ApplicationClass::formTree()
 	}
 }
 
-int ApplicationClass::executeApp()
+int ApplicationClass::executeApp() // Выполнение основного алгоритма программы
 {
 	cout << "Object tree";
-	ancestor->childrenList.front()->printTree(false);
+	ancestor->childrenList.front()->printTree(false); // Вывод дерева без готовностей
 	cout << "\nThe tree of objects and their radiness";
-	ancestor->childrenList.front()->printTree(true);
+	ancestor->childrenList.front()->printTree(true); // Вывод дерева с готовностями
 	return 0;
 }
 
-void ApplicationClass::enterReadiness()
+void ApplicationClass::enterReadiness() // Установка готовности объекта
 {
 	string objectName;
 	int numericReadiness;
