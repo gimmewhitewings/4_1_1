@@ -18,17 +18,19 @@ void ApplicationClass::formTree()
 	while (true)
 	{
 		cin >> parentName >> childName;
-		if (parentName == childName)
+		if (parentName == childName) // Условие выхода
 		{
 			return;
 		}
-
-		BaseClass* child = new BaseClass(childName, ancestor->getObject(parentName));
+		// Новый дочерний объект
+		BaseClass* child = new BranchClass(childName, ancestor->getObject(parentName));
 	}
 }
 
 void ApplicationClass::executeApp()
 {
+	// Вывод имени родительского элемента
 	cout << ancestor->childrenList.at(0)->getName();
+	// Вызов метода showTree родительского объекта
 	ancestor->childrenList.at(0)->printTree();
 }

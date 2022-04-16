@@ -12,6 +12,7 @@ class BaseClass
 private:
 	string objectName = "";
 	BaseClass* parentPtr = nullptr; // Указатель на родительский объект
+	bool readiness; // Добавлено в КП_3_1. Готовность объекта
 public:
 	static BaseClass* ancestor; //Корневой объект по умолчанию
 	vector<BaseClass*> childrenList; // Список производных элементов
@@ -21,8 +22,11 @@ public:
 
 	void setName(string objectName) { this->objectName = objectName; }
 	string getName() { return objectName; }
-	void setParent(BaseClass* parentPtr) { this->parentPtr = parentPtr; }
+	void setParent(BaseClass* parentPtr);
+	BaseClass* getParent() { return parentPtr; }
 	BaseClass* getObject(string objectName);
 	void printTree();
+	bool getReadiness() { return readiness; }
+	void setReadiness(int numericReadiness);
 };
 #endif

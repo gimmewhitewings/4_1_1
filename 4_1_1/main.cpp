@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-	ApplicationClass object; //Создание объекта класса ApplicationClass
+	ApplicationClass object;
 	object.formTree();
 	object.executeApp();
 }
