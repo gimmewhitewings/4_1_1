@@ -141,12 +141,22 @@
   <ItemGroup>
     <ClCompile Include="ApplicationClass.cpp" />
     <ClCompile Include="BaseClass.cpp" />
+    <ClCompile Include="FifthBranchClass.cpp" />
+    <ClCompile Include="FourthBranchClass.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SecondBranchClass.cpp" />
+    <ClCompile Include="SixthBranchClass.cpp" />
+    <ClCompile Include="ThirdBranchClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ApplicationClass.h" />
     <ClInclude Include="BaseClass.h" />
     <ClInclude Include="BranchClass.h" />
+    <ClInclude Include="FifthBranchClass.h" />
+    <ClInclude Include="FourthBranchClass.h" />
+    <ClInclude Include="SecondBranchClass.h" />
+    <ClInclude Include="SixthBranchClass.h" />
+    <ClInclude Include="ThirdBranchClass.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

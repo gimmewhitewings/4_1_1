@@ -1,36 +1,81 @@
 #include "ApplicationClass.h"
+#include "BranchClass.h"
+#include "SecondBranchClass.h"
+#include "ThirdBranchClass.h"
+#include "FourthBranchClass.h"
+#include "FifthBranchClass.h"
+#include "SixthBranchClass.h"
 
 ApplicationClass::ApplicationClass(BaseClass* parentPtr)
 {
 	BaseClass::ancestor->setParent(parentPtr);
 	BaseClass::ancestor->setName("ancestor");
+	BaseClass::ancestor->setReadiness(1);
 }
 
+// Изменено для КЛ_3_1
 void ApplicationClass::formTree()
 {
 	string parentName, childName;
+	int classNumber;
 
 	cin >> parentName;
-	cin.clear();
-	cin.ignore(1024, '\n');
-
+	// Головной объект
 	BaseClass* head = new BaseClass(parentName);
-	while (true)
+	cin >> parentName;
+	while (parentName != "endtree")
 	{
-		cin >> parentName >> childName;
-		if (parentName == childName) // Условие выхода
+		cin >> childName >> classNumber;
+		// Определение номера класса
+		switch (classNumber)
 		{
-			return;
+		case 2:
+		{
+			BaseClass* child = new SecondBranchClass(childName, ancestor->getObject(parentName));
+			break;
 		}
-		// Новый дочерний объект
-		BaseClass* child = new BranchClass(childName, ancestor->getObject(parentName));
+		case 3:
+		{
+			BaseClass* child = new ThirdBranchClass(childName, ancestor->getObject(parentName));
+			break;
+		}
+		case 4:
+		{
+			BaseClass* child = new FourthBranchClass(childName, ancestor->getObject(parentName));
+			break;
+		}
+		case 5:
+		{
+			BaseClass* child = new FifthBranchClass(childName, ancestor->getObject(parentName));
+			break;
+		}
+		case 6:
+		{
+			BaseClass* child = new SixthBranchClass(childName, ancestor->getObject(parentName));
+			break;
+		}
+		default:
+			break;
+		}
+		cin >> parentName;
 	}
 }
 
-void ApplicationClass::executeApp()
+int ApplicationClass::executeApp()
 {
-	// Вывод имени родительского элемента
-	cout << ancestor->childrenList.at(0)->getName();
-	// Вызов метода showTree родительского объекта
-	ancestor->childrenList.at(0)->printTree();
+	cout << "Object tree";
+	ancestor->childrenList.front()->printTree(false);
+	cout << "\nThe tree of objects and their radiness";
+	ancestor->childrenList.front()->printTree(true);
+	return 0;
+}
+
+void ApplicationClass::enterReadiness()
+{
+	string objectName;
+	int numericReadiness;
+	while (cin >> objectName >> numericReadiness)
+	{
+		ancestor->getObject(objectName)->setReadiness(numericReadiness);
+	}
 }

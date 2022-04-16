@@ -39,30 +39,33 @@ BaseClass* BaseClass::getObject(string objectName)
 	}
 }
 
-void BaseClass::printTree()
+void BaseClass::printTree(bool isPrintReadiness, unsigned tableLevel)
 {
-	// Вывод имени элемента
-	cout << endl << getName() << "  ";
-	// Проход по дочерним элементам текущего объекта
-	for (size_t i = 0; i < childrenList.size(); i++)
+	string tabsLength;
+	tabsLength.append(4 * tableLevel,' ');
+	cout << '\n' << tabsLength << this->getName();
+
+	if (isPrintReadiness)
 	{
-		cout << childrenList.at(i)->getName();
-		// Если элемент не последний производный объект
-		if (i + 1 < childrenList.size())
+		if (this->getReadiness())
 		{
-			cout << "  ";
+			cout << " is redy";
+		}
+		else
+		{
+			cout << " is not ready";
 		}
 	}
 
-	// Проход по всем дочерним элементам с использованием рекурсии
+	// Условие выхода из рекурсии
+	if (childrenList.empty())
+	{
+		return;
+	}
+
 	for (size_t i = 0; i < childrenList.size(); i++)
 	{
-		// Проверка наличия хотя бы одного дочернего элемента
-		if (!childrenList.at(i)->childrenList.empty())
-		{
-			// Вызов метода printTree для каждого дочернего элемента
-			childrenList.at(i)->printTree();
-		}
+		childrenList.at(i)->printTree(isPrintReadiness, tableLevel + 1);
 	}
 }
 
